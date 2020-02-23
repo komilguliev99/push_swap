@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 18:24:22 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/22 18:26:15 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/23 15:20:02 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void             fulfil(t_stack **a, t_stack **b, char *cmd)
 {
     if (cmd[0] == 's')
-        swap(a, b, cmd);
+        swap(a, b, cmd, 0);
     else if (cmd[0] == 'p')
-        push(a, b, cmd);
+        push(a, b, cmd, 0);
     else if (cmd[0] == 'r' && cmd[1] == 'r')
-        rotate_rev(a, b, cmd);
+        rotate_rev(a, b, cmd, 0);
     else if (cmd[0] == 'r')
-        rotate(a, b, cmd);
+        rotate(a, b, cmd, 0);
 }
 
 void             print_stacks(t_stack *a, t_stack *b)
