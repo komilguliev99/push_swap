@@ -6,7 +6,7 @@
 #    By: dcapers <dcapers@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/21 11:31:41 by dcapers           #+#    #+#              #
-#    Updated: 2020/02/23 15:36:33 by dcapers          ###   ########.fr        #
+#    Updated: 2020/02/24 22:26:35 by dcapers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ CHECKER_SOURCES = ft_stk_create.c ft_stk_push.c ft_stk_pop.c ft_stk_clear.c \
 PUSHSWAP_SOURCES = ft_stk_create.c ft_stk_push.c ft_stk_pop.c ft_stk_clear.c \
 		  		  ft_stk_print.c ft_stk_swap.c ft_stk_rotate.c ft_stk_add.c \
 				  operations.c main_pushswap.c ft_list_push.c fill_stack.c   \
-				  ft_quicksort.c generate_cmds.c is_stk_sorted.c
+				  ft_quicksort.c generate_cmds.c is_stk_sorted.c move_commands.c \
 
 CHECKER_SRCS = $(addprefix $(DIR_S)/,$(CHECKER_SOURCES))
 PUSHSWAP_SRCS = $(addprefix $(DIR_S)/,$(PUSHSWAP_SOURCES))
@@ -63,6 +63,7 @@ clean:
 fclean: clean
 	@rm -f $(CHECKER_N)
 	@rm -f $(PUSHSWAP_N)
+	@rm -f libft.a
 	@make fclean -C $(LIBFT)
 
 re: fclean all

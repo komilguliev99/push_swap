@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 18:24:22 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/23 15:20:02 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/24 17:53:13 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void             fulfil(t_stack **a, t_stack **b, char *cmd)
 void             print_stacks(t_stack *a, t_stack *b)
 {
     write(1, "A: ", 3);
-    ft_stk_print(a);
+    ft_stk_print(a, 0);
     write(1, "B: ", 3);
-    ft_stk_print(b);
+    ft_stk_print(b, 0);
     write(1, "____________________\n", 21);
 }
 

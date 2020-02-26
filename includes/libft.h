@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 23:15:38 by kolya             #+#    #+#             */
-/*   Updated: 2020/02/21 23:51:24 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/25 10:27:45 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct		s_list
 	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
+	struct s_list	*prev;
 }					t_list;
 
 void				*ft_memset(void *s, int c, size_t n);
@@ -46,7 +47,7 @@ char				*ft_strstr(const char *hstk, const char *need);
 char				*ft_strnstr(const char *hstk, const char *need, size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
-int					ft_atoi(const char *nbr);
+long int			ft_atoi(const char *nbr);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);

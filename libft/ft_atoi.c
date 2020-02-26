@@ -6,13 +6,13 @@
 /*   By: dcapers <dcapers@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 15:19:12 by dcapers           #+#    #+#             */
-/*   Updated: 2019/10/29 09:55:34 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/24 22:44:37 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	well_returned(unsigned long long res, int sg,
+static long int		well_returned(unsigned long long res, int sg,
 		int count)
 {
 	if (count >= 19)
@@ -23,7 +23,7 @@ static int	well_returned(unsigned long long res, int sg,
 		return (res * sg);
 }
 
-int			ft_atoi(const char *str)
+long int			ft_atoi(const char *str)
 {
 	int					ng;
 	unsigned long long	res;

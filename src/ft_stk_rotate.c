@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 20:27:22 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/21 20:45:54 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/24 17:14:08 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ void        ft_stk_rotate(t_stack **stk, int rev)
 
     if (!stk || !*stk || !(*stk)->next)
         return ;
-    last = *stk;
     first = *stk;
-    while (last->next)
-        last = last->next;
+    last = first->prev;
     if (!rev)
     {
         last->next = first;
         *stk = (*stk)->next;
+        (*stk)->prev = first;
         first->next = NULL;
     }
     else
@@ -35,6 +34,7 @@ void        ft_stk_rotate(t_stack **stk, int rev)
             *stk = (*stk)->next;
         (*stk)->next = NULL;
         last->next = first;
+        last->prev = *stk;
         *stk = last;
     } 
 }
