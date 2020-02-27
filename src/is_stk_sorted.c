@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_stk_sorted.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:24:04 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/27 12:24:31 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/27 20:24:52 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int			is_stk_sorted(t_stack *stk)
 {
 	while (stk && stk->next)
 	{
-		if (stk->order >= stk->next->order)
+		if (stk->data >= stk->next->data)
 			return (0);
 		stk = stk->next;
 	}

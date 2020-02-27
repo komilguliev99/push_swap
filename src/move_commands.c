@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:33:31 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/27 20:06:42 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/27 22:05:16 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,8 @@ void			move_down(t_stack **a, t_stack **b, t_main *st, int flag)
 			rotate(a, b, 'a', st);
 			st->next++;
 		}
-		else if ((*a)->order <= st->mid)
-		{
+		else if ((*a)->order <= st->mid && ++st->b_cnt)
 			push(a, b, 'b', st);
-			st->b_cnt++;
-		}
 		else
 		{
 			if (!it)

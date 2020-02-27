@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:25:06 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/27 18:50:29 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/27 22:13:28 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void				print_stacks(t_stack *a, t_stack *b)
 {
 	usleep(100000);
 	ft_printf("\E[H\E[2J");
-
 	while (a || b)
 	{
 		if (a)
@@ -40,64 +39,14 @@ void				print_stacks(t_stack *a, t_stack *b)
 			ft_printf("%10s|", " ");
 		if (b)
 		{
-			ft_printf("%10d", b->data);			
+			ft_printf("%10d", b->data);
 			b = b->next;
 		}
 		ft_putchar('\n');
-	}	
+	}
 }
 
-int					fill_cmdlist(t_list **cmd)
-{
-	char	*command;
-
-	command = NULL;
-	*cmd = NULL;
-	while (get_next_line(0, &command) > 0)
-	{
-		if (!(ft_strcmp(command, "sa") == 0 || ft_strcmp(command, "sb") == 0 ||
-			ft_strcmp(command, "ss") == 0 || ft_strcmp(command, "pa") == 0 ||
-			ft_strcmp(command, "pb") == 0 || ft_strcmp(command, "ra") == 0 ||
-			ft_strcmp(command, "rb") == 0 || ft_strcmp(command, "rr") == 0 ||
-			ft_strcmp(command, "rra") == 0 || ft_strcmp(command, "rrb") == 0
-			|| ft_strcmp(command, "rrr") == 0))
-		{
-			ft_list_clear(cmd);
-			return (0);
-		}
-		ft_list_push(cmd, command);
-		command = NULL;
-	}
-	if (*cmd)
-		return (1);
-	return (0);
-}
-
-void				print_result(t_stack *a, t_stack *b)
-{
-	t_stack		*head;
-
-	head = a;
-	if (b)
-	{
-		ft_stk_clear(&b);
-		write(1, "KO\n", 3);
-		return ;
-	}
-	while (a && a->next)
-	{
-		if (a->data > a->next->data)
-		{
-			write(1, "KO\n", 3);
-			return ;
-		}
-		a = a->next;
-	}
-	write(1, "OK\n", 3);
-	ft_stk_clear(&head);
-}
-
-void					run(t_list *cmd, t_stack **a, t_stack **b, int flag)
+void				run(t_list *cmd, t_stack **a, t_stack **b, int flag)
 {
 	while (cmd)
 	{
@@ -133,8 +82,10 @@ int					main(int ac, char **av)
 
 	a = NULL;
 	b = NULL;
+	cmd = NULL;
 	flag = ac > 1 ? check_flag(av[1]) : 0;
-	if (!fill_stack(&a, ac - 1 - flag, av + 1 + flag, NULL) || !fill_cmdlist(&cmd))
+	if (!fill_stack(&a, ac - 1 - flag, av + 1 + flag, NULL)
+			|| (a && !is_stk_sorted(a) && !fill_cmdlist(&cmd)))
 	{
 		if (a)
 			ft_stk_clear(&a);
@@ -143,6 +94,8 @@ int					main(int ac, char **av)
 	}
 	if (flag)
 		print_stacks(a, b);
+	if (!a)
+		return (0);
 	run(cmd, &a, &b, flag);
 	ft_list_clear(&cmd);
 	print_result(a, b);
