@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:59:37 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/27 12:15:49 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/27 16:12:01 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static void		print_reverse(t_stack *stk)
 
 void			ft_stk_print(t_stack *stk, int rev)
 {
-	t_stack		*first;
-
 	if (!stk)
 	{
 		write(1, "(NULL)\n", 7);

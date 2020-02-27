@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcapers <dcapers@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 23:15:38 by kolya             #+#    #+#             */
-/*   Updated: 2020/02/25 12:34:36 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/27 13:23:47 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include "ft_printf.h"
 # define BUFF_SIZE 1024
 
 typedef struct		s_list

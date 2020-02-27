@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 15:34:56 by dcapers           #+#    #+#             */
-/*   Updated: 2019/09/17 15:49:42 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/27 13:38:17 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int		ft_wordcount(char const *s, char c)
 	return (count);
 }
 
-static char		**clear_memory(char **wds)
+static char		**clear_mem(char **wds)
 {
 	while (wds--)
 		free(*wds);
@@ -60,7 +60,7 @@ char			**ft_strsplit(char const *s, char c)
 			while (s[i] != c && s[i] != '\0')
 				i++;
 			if ((*res = ft_strsub(s, st, i - st)) == NULL)
-				return (clear_memory(res));
+				return (clear_mem(res));
 			res++;
 		}
 		else

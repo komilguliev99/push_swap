@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   move_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:33:31 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/27 12:38:51 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/27 20:06:42 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 static void		reverse_rotate(t_stack **a, t_stack **b,
-		t_state *st, int counter)
+		t_main *st, int counter)
 {
 	while (counter-- > 0)
 	{
 		if ((*b)->order != st->next)
-			rotate_rev(a, b, "rrr", st);
+			rotate_rev(a, b, 'r', st);
 		else
-			rotate_rev(a, b, "rra", st);
+			rotate_rev(a, b, 'a', st);
 	}
 }
 
-void			move_acnt(t_stack **a, t_stack **b, t_state *st, int n)
+void			move_acnt(t_stack **a, t_stack **b, t_main *st, int n)
 {
 	int		i;
 
@@ -34,13 +34,13 @@ void			move_acnt(t_stack **a, t_stack **b, t_state *st, int n)
 		(*b)->flag = st->flag;
 		(*b)->sorted = 1;
 		st->next++;
-		push(a, b, "pa", st);
-		rotate(a, b, "ra", st);
+		push(a, b, 'a', st);
+		rotate(a, b, 'a', st);
 	}
 	st->b_cnt -= i;
 }
 
-void			move_down(t_stack **a, t_stack **b, t_state *st, int flag)
+void			move_down(t_stack **a, t_stack **b, t_main *st, int flag)
 {
 	t_stack		*it;
 	int			counter;
@@ -51,12 +51,12 @@ void			move_down(t_stack **a, t_stack **b, t_state *st, int flag)
 		if ((*a)->order == st->next && (*a)->prev->order == st->next - 1)
 		{
 			(*a)->sorted = 1;
-			rotate(a, b, "ra", st);
+			rotate(a, b, 'a', st);
 			st->next++;
 		}
 		else if ((*a)->order <= st->mid)
 		{
-			push(a, b, "pb", st);
+			push(a, b, 'b', st);
 			st->b_cnt++;
 		}
 		else
@@ -64,12 +64,13 @@ void			move_down(t_stack **a, t_stack **b, t_state *st, int flag)
 			if (!it)
 				it = *a;
 			counter++;
-			rotate(a, b, "ra", st);
+			rotate(a, b, 'a', st);
 		}
-	reverse_rotate(a, b, st, counter);
+	if (st->next != 1)
+		reverse_rotate(a, b, st, counter);
 }
 
-void			move_up(t_stack **b, t_stack **a, t_state *st)
+void			move_up(t_stack **b, t_stack **a, t_main *st)
 {
 	int		i;
 
@@ -81,10 +82,10 @@ void			move_up(t_stack **b, t_stack **a, t_state *st)
 		else if ((*b)->order >= st->mid)
 		{
 			(*b)->flag = st->flag;
-			push(a, b, "pa", st);
+			push(a, b, 'a', st);
 			st->b_cnt--;
 		}
 		else
-			rotate(a, b, "rb", st);
+			rotate(a, b, 'b', st);
 	}
 }

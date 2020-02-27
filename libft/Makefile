@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dcapers <dcapers@student.21-school.ru>     +#+  +:+       +#+         #
+#    By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/08 15:33:43 by dcapers           #+#    #+#              #
-#    Updated: 2020/02/21 20:58:01 by dcapers          ###   ########.fr        #
+#    Updated: 2020/02/27 13:22:18 by dcapers          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,10 @@ SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c     \
 	  ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c  \
 	  ft_isspace.c ft_strissorted.c ft_lstnth.c ft_strcntif.c          \
 	  ft_lstprint.c ft_itoa_base.c ft_uitoa_base.c ft_strjoin_by.c	   \
-	  ft_pow.c ft_ctos.c ft_putchar_cnt.c get_next_line.c
+	  ft_pow.c ft_ctos.c ft_putchar_cnt.c get_next_line.c ft_utils.c   \
+	  ft_printf.c handle_char.c handle_di.c handle_float.c handle_o.c  \
+	  handle_point.c handle_string.c handle_u.c handle_x.c set_float.c \
+	  set_argument.c set_arglen.c set_format.c initialize_state.c
 
 INCLUDES = ./includes
 

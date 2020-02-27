@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_pushswap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcapers <dcapers@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 16:57:51 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/27 12:33:16 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/27 18:57:55 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,36 +52,43 @@ void        print_stack(t_stack *stk)
     }
 }
 
-void        reset_state(t_state *st, int ac)
+void        reset_main(t_main *st, int ac)
 {
     st->next = 1;
     st->max = ac;
     st->flag = 0;
     st->b_cnt = 0;
     st->cnt = ac;
-    st->lst = NULL;
+    st->last = NULL;
+    st->head = NULL;
 }
 
 void        print_result(t_list *list)
 {
-    // char        buff[2048];
-    // int         i;
-    t_list      *head;
-
-    if (!list)
-        write(1, "(NULL)", 7);
-    else
+    while (list && list->next)
     {
-        printf("PRINTING...\n");
-        head = list;
-        while (list->prev && list->prev != head)
+        if ((!ft_strcmp(list->content, "sb") && !ft_strcmp(list->next->content, "sa")) ||
+        (!ft_strcmp(list->content, "sa") && !ft_strcmp(list->next->content, "sb")))
         {
-            list = list->prev;
-            ft_putstr(list->content);
-            ft_putstr(" => ");
+            ft_putstr("ss\n");
+            list = list->next;
         }
-        ft_putstr(list->content);
+        else if ((!ft_strcmp(list->content, "ra") && !ft_strcmp(list->next->content, "rb")) ||
+        (!ft_strcmp(list->content, "rb") && !ft_strcmp(list->next->content, "ra")))
+        {
+            ft_putstr("rr\n");
+            list = list->next;
+        }
+        else
+        {
+            ft_putstr(list->content);
+            write(1, "\n", 1);
+        }
+        list = list->next;
     }
+    if (list)
+        ft_putstr(list->content);
+    write(1, "\n", 1);
 }
 
 int         main(int ac, char **av)
@@ -89,25 +96,26 @@ int         main(int ac, char **av)
     t_stack     *a;
     t_stack     *b;
     int         *sorted;
-    t_state     st;
+    t_main     st;
 
     a = NULL;
     b = NULL;
+    st.a_cnt = 0;
     if (!(sorted = (int *)malloc(sizeof(int) * (ac - 1))))
         return (0);
-    if (!fill_stack(&a, ac, av, sorted))
+    if (!fill_stack(&a, ac - 1, av + 1, &(st.a_cnt)))
     {
         if (a)
             ft_stk_clear(&a);
-        free(sorted);
         write(2, "Error\n", 6);
         return (0);
     }
-    reset_state(&st, ac - 1);
-    ft_quicksort(sorted, 0, ac - 2);
-    set_order(a, sorted, ac - 1);
+    fill_array(a, &sorted, st.a_cnt);
+    reset_main(&st, st.a_cnt);
+    ft_quicksort(sorted, 0, st.a_cnt - 1);
+    set_order(a, sorted, st.a_cnt);
     if (!is_stk_sorted(a))
         generate_cmds(&a, &b, &st, -1);
-    print_result(st.lst);
+    print_result(st.head);
     return (0);
 }

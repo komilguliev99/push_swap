@@ -3,17 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:39:07 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/27 12:41:27 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/27 19:00:11 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void			swap(t_stack **a, t_stack **b, char *cmd, t_state *st)
+static void		update_state(t_main *st, char *cmd)
 {
+	if (!st->head)
+	{
+		st->head = ft_lstnew(cmd, 5);
+		st->last = st->head;
+	}
+	else
+	{
+		st->last->next = ft_lstnew(cmd, 5);
+		st->last = st->last->next;
+	}
+}
+
+void			swap(t_stack **a, t_stack **b, char c, t_main *st)
+{
+	char	cmd[3];
+
+	cmd[2] = '\0';
+	cmd[1] = c;
+	cmd[0] = 's';
 	if (cmd[1] == 'a')
 		ft_stk_swap(a);
 	else if (cmd[1] == 'b')
@@ -24,21 +43,31 @@ void			swap(t_stack **a, t_stack **b, char *cmd, t_state *st)
 		ft_stk_swap(b);
 	}
 	if (st)
-		ft_lstadd(&(st->lst), ft_lstnew(cmd, 5));
+		update_state(st, cmd);
 }
 
-void			push(t_stack **a, t_stack **b, char *cmd, t_state *st)
+void			push(t_stack **a, t_stack **b, char c, t_main *st)
 {
+	char	cmd[3];
+
+	cmd[2] = '\0';
+	cmd[1] = c;
+	cmd[0] = 'p';
 	if (cmd[1] == 'a' && *b)
 		ft_stk_add(a, ft_stk_pop(b));
 	else if (cmd[1] == 'b' && *a)
 		ft_stk_add(b, ft_stk_pop(a));
 	if (st)
-		ft_lstadd(&(st->lst), ft_lstnew(cmd, 5));
+		update_state(st, cmd);
 }
 
-void			rotate(t_stack **a, t_stack **b, char *cmd, t_state *st)
+void			rotate(t_stack **a, t_stack **b, char c, t_main *st)
 {
+	char	cmd[3];
+
+	cmd[2] = '\0';
+	cmd[1] = c;
+	cmd[0] = 'r';
 	if (cmd[1] == 'a')
 		ft_stk_rotate(a, 0);
 	else if (cmd[1] == 'b')
@@ -49,11 +78,17 @@ void			rotate(t_stack **a, t_stack **b, char *cmd, t_state *st)
 		ft_stk_rotate(b, 0);
 	}
 	if (st)
-		ft_lstadd(&(st->lst), ft_lstnew(cmd, 5));
+		update_state(st, cmd);
 }
 
-void			rotate_rev(t_stack **a, t_stack **b, char *cmd, t_state *st)
+void			rotate_rev(t_stack **a, t_stack **b, char c, t_main *st)
 {
+	char	cmd[4];
+
+	cmd[3] = '\0';
+	cmd[2] = c;
+	cmd[1] = 'r';
+	cmd[0] = 'r';
 	if (cmd[1] == 'r' && cmd[2] == 'a')
 		ft_stk_rotate(a, 1);
 	else if (cmd[1] == 'r' && cmd[2] == 'b')
@@ -64,5 +99,5 @@ void			rotate_rev(t_stack **a, t_stack **b, char *cmd, t_state *st)
 		ft_stk_rotate(b, 1);
 	}
 	if (st)
-		ft_lstadd(&(st->lst), ft_lstnew(cmd, 5));
+		update_state(st, cmd);
 }

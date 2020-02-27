@@ -6,32 +6,34 @@
 /*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:14:32 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/27 11:40:18 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/27 20:05:06 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int			check_arg(char *arg)
+static int			check_arg(char *arg, int *exist, int *len)
 {
-	int		i;
-
-	i = 0;
-	while (ft_isspace(arg[i]))
-		i++;
-	if (arg[i] == '-' || arg[i] == '+')
-		i++;
-	while (arg[i] != '\0')
-		if (!ft_isdigit(arg[i]))
-		{
-			while (arg[i] != '\0' && ft_isspace(arg[i]))
-				i++;
-			if (arg[i] != '\0')
-				return (0);
-		}
-		else
-			i++;
-	return (1);
+    while (*len >= 0 && ft_isspace(arg[*len]))
+        (*len)--;
+    while (*len >= 0)
+    {
+        if (!ft_isdigit(arg[*len]))
+        {
+            if (arg[*len] == '-' || arg[*len] == '+')
+                (*len)--;
+            while (*len >= 0 && ft_isspace(arg[*len]))
+                (*len)--;
+            if (*len < 0 || ft_isdigit(arg[*len]))
+                return (1);
+            else
+                return (0);
+        }
+        else
+            (*len)--;
+        *exist = 1;
+    }
+    return (1);
 }
 
 static int			has_duplicates(t_stack *stk)
@@ -52,29 +54,40 @@ static int			has_duplicates(t_stack *stk)
 	return (0);
 }
 
-int					fill_stack(t_stack **a, int ac, char **av, int *sorted)
+static int          check_diplicate(t_stack **a)
 {
-	long int		num;
-
-	while (ac > 1)
-	{
-		num = ft_atoi(av[ac - 1]);
-		if (!check_arg(av[ac - 1]) || num < -2147483648 || num > 2147483647)
-		{
-			ft_stk_clear(a);
-			return (0);
-		}
-		ft_stk_push(a, num);
-		if (sorted)
-			sorted[ac - 2] = (*a)->data;
-		ac--;
-	}
-	if (has_duplicates(*a))
+    if (has_duplicates(*a))
 	{
 		ft_stk_clear(a);
-		if (sorted)
-			free(sorted);
 		return (0);
 	}
-	return (1);
+    return (1);
+}
+
+int					fill_stack(t_stack **a, int ac, char **av, int *count)
+{
+	long int		num;
+    int             exist;
+    int             len;
+
+	while (ac-- > 0)
+	{
+        len = ft_strlen(av[ac]) - 1;
+        while (len >= 0)
+        {
+            exist = 0;
+            if (!check_arg(av[ac], &exist, &len))
+                return (0);
+            num = ft_atoi(av[ac] + (len < 0 ? 0 : len + 1));
+            if (num < -2147483648 || num > 2147483647)
+                return (0);
+            if (exist)
+            {
+                ft_stk_push(a, num);
+                if (count)
+                    (*count)++;
+            }
+        }
+	}
+	return (check_diplicate(a));
 }
