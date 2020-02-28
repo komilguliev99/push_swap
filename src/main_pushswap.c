@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_pushswap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dcapers <dcapers@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 21:32:22 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/27 22:06:46 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/28 11:14:16 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		set_order(t_stack *a, int *sorted, int n)
 		}
 		a = a->next;
 	}
+	free(sorted);
 }
 
 void		print_stack(t_stack *stk)
@@ -73,8 +74,7 @@ int			main(int ac, char **av)
 	a = NULL;
 	b = NULL;
 	st.a_cnt = 0;
-	if (!(sorted = (int *)malloc(sizeof(int) * (ac - 1))))
-		return (0);
+	sorted = NULL;
 	if (!fill_stack(&a, ac - 1, av + 1, &(st.a_cnt)))
 	{
 		if (a)
@@ -88,6 +88,6 @@ int			main(int ac, char **av)
 	set_order(a, sorted, st.a_cnt);
 	if (!is_stk_sorted(a))
 		generate_cmds(&a, &b, &st, -1);
-	print_pushswap(st.head);
+	print_pushswap(&st, &a, st.head);
 	return (0);
 }

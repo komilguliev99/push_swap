@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_result.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dcapers <dcapers@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 21:41:36 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/27 22:13:43 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/28 11:19:47 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int		check_for(char *s1, char *s2, char c)
 	return (0);
 }
 
-void			print_pushswap(t_list *list)
+void			print_pushswap(t_main *st, t_stack **a, t_list *list)
 {
 	while (list && list->next)
 	{
@@ -55,6 +55,8 @@ void			print_pushswap(t_list *list)
 		ft_putstr(list->content);
 		write(1, "\n", 1);
 	}
+	ft_stk_clear(a);
+	ft_list_clear(&st->head);
 }
 
 void			print_result(t_stack *a, t_stack *b)

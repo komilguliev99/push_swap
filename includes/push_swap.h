@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dcapers <dcapers@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 22:17:44 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/27 22:23:44 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/28 10:53:57 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void			move_down(t_stack **a, t_stack **b, t_main *st, int flag);
 void			move_up(t_stack **b, t_stack **a, t_main *st);
 void			sort_stack(t_stack **a, t_stack **b, t_main *st, char c);
 void			sort_part(t_stack **a, t_stack **b, t_main *st);
-void			print_pushswap(t_list *list);
+void			print_pushswap(t_main *st, t_stack **a, t_list *list);
 void			print_result(t_stack *a, t_stack *b);
 
 #endif
