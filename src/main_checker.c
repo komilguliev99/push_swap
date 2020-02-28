@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:25:06 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/28 16:02:11 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/28 16:54:58 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,25 @@ void				print_stacks(t_stack *a, t_stack *b)
 {
 	usleep(100000);
 	ft_printf("\E[H\E[2J");
+	ft_printf("%-12c|%12c\n", 'A', 'B');
+	ft_printf("------------------------\n");
 	while (a || b)
 	{
 		if (a)
 		{
-			ft_printf("%-10d|", a->data);
+			ft_printf("%-12d|", a->data);
 			a = a->next;
 		}
 		else
-			ft_printf("%10s|", " ");
+			ft_printf("%12s|", " ");
 		if (b)
 		{
-			ft_printf("%10d", b->data);
+			ft_printf("%12d", b->data);
 			b = b->next;
 		}
 		ft_putchar('\n');
 	}
-	ft_printf("--------------------------");
+	ft_printf("------------------------\n");
 }
 
 void				run(t_list *cmd, t_stack **a, t_stack **b, int flag)
@@ -86,7 +88,7 @@ int					main(int ac, char **av)
 	cmd = NULL;
 	flag = ac > 1 ? check_flag(av[1]) : 0;
 	if (!fill_stack(&a, ac - 1 - flag, av + 1 + flag, NULL)
-			|| (a && !is_stk_sorted(a) && !fill_cmdlist(&cmd)))
+			|| (a && !fill_cmdlist(&cmd)))
 	{
 		if (a)
 			ft_stk_clear(&a);

@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 22:08:31 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/28 15:15:30 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/28 16:51:43 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ int					fill_cmdlist(t_list **cmd)
 			ft_strcmp(command, "rra") == 0 || ft_strcmp(command, "rrb") == 0
 			|| ft_strcmp(command, "rrr") == 0))
 		{
-			ft_list_clear(cmd);
+			if (cmd)
+				ft_list_clear(cmd);
 			free(command);
 			return (0);
 		}
 		ft_list_push(cmd, command);
 	}
-	if (*cmd)
-		return (1);
-	return (0);
+	return (1);
 }
