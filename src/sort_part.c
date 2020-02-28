@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 21:26:07 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/27 22:02:41 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/28 16:09:25 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ void			sort_five_el(t_stack **a, t_stack **b, t_main *st)
 void			sort_part(t_stack **a, t_stack **b, t_main *st)
 {
 	if (st->a_cnt == 3)
-		sort_stack(a, b, st, 'b');
+		sort_stack(b, a, st, 'a');
+	else if (st->a_cnt == 2)
+		swap(a, b, 'a', st);
 	else if (st->a_cnt == 4)
 		sort_four_el(a, b, st);
 	else

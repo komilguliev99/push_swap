@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_result.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcapers <dcapers@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 21:41:36 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/28 11:19:47 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/28 14:56:39 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int		check_for(char *s1, char *s2, char c)
 
 	cmd1[1] = 'a';
 	cmd1[2] = '\0';
-	cmd2[1] = 'a';
+	cmd2[1] = 'b';
 	cmd2[2] = '\0';
 	cmd1[0] = c;
 	cmd2[0] = c;
@@ -67,6 +67,7 @@ void			print_result(t_stack *a, t_stack *b)
 	if (b)
 	{
 		ft_stk_clear(&b);
+		ft_stk_clear(&a);
 		write(1, "KO\n", 3);
 		return ;
 	}

@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:20:48 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/27 21:30:31 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/28 14:29:15 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,20 @@ void			generate_second(t_stack **a, t_stack **b, t_main *st)
 		move_up(b, a, st);
 }
 
+static void		sorting(t_stack **a, t_stack **b, t_main *st, int stop)
+{
+	st->mid = st->max / 2 + st->next;
+	move_down(a, b, st, (*a)->flag);
+	while (*b)
+		generate_second(a, b, st);
+	if (st->next <= st->cnt && (stop || stop < 0))
+		sorting(a, b, st, stop - 1);
+}
+
 void			generate_cmds(t_stack **a, t_stack **b, t_main *st, int stop)
 {
 	if (st->a_cnt > 5)
-	{
-		st->mid = st->max / 2 + st->next;
-		move_down(a, b, st, (*a)->flag);
-		while (*b)
-			generate_second(a, b, st);
-		if (st->next <= st->cnt && (stop || stop < 0))
-			generate_cmds(a, b, st, stop - 1);
-	}
+		sorting(a, b, st, stop);
 	else
 		sort_part(a, b, st);
 }

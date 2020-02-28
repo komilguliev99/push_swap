@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:25:06 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/27 22:13:28 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/02/28 16:02:11 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void				print_stacks(t_stack *a, t_stack *b)
 		}
 		ft_putchar('\n');
 	}
+	ft_printf("--------------------------");
 }
 
 void				run(t_list *cmd, t_stack **a, t_stack **b, int flag)
