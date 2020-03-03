@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 21:41:36 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/28 16:45:27 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/03/03 13:45:22 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void			print_result(t_stack *a, t_stack *b)
 		if (a->data > a->next->data)
 		{
 			write(1, "KO\n", 3);
-			return ;
+			exit (0);
 		}
 		a = a->next;
 	}

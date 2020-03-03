@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:25:06 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/28 16:54:58 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/03/03 13:53:03 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,12 @@ int					main(int ac, char **av)
 		if (a)
 			ft_stk_clear(&a);
 		write(2, "Error\n", 6);
-		return (0);
+		exit (0);
 	}
 	if (flag)
 		print_stacks(a, b);
 	if (!a)
-		return (0);
+		exit (0);
 	run(cmd, &a, &b, flag);
 	ft_list_clear(&cmd);
 	print_result(a, b);

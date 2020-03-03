@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 22:08:31 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/28 16:51:43 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/03/03 13:49:33 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 int					fill_cmdlist(t_list **cmd)
 {
 	char	*command;
+	int		error;
 
 	command = NULL;
+	error = 0;
 	*cmd = NULL;
 	while (get_next_line(0, &command) > 0)
 	{
@@ -26,13 +28,14 @@ int					fill_cmdlist(t_list **cmd)
 			ft_strcmp(command, "rb") == 0 || ft_strcmp(command, "rr") == 0 ||
 			ft_strcmp(command, "rra") == 0 || ft_strcmp(command, "rrb") == 0
 			|| ft_strcmp(command, "rrr") == 0))
-		{
-			if (cmd)
-				ft_list_clear(cmd);
-			free(command);
-			return (0);
-		}
+			error = 1;
 		ft_list_push(cmd, command);
 	}
-	return (1);
+	if (error )
+	{
+		if (cmd)
+			ft_list_clear(cmd);
+		free(command);
+	}
+	return (!error);
 }

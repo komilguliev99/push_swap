@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 21:32:22 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/28 16:08:25 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/03/03 13:52:47 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int			main(int ac, char **av)
 		if (a)
 			ft_stk_clear(&a);
 		write(2, "Error\n", 6);
-		return (0);
+		exit (0);
 	}
 	fill_array(a, &sorted, st.a_cnt);
 	reset_main(&st, st.a_cnt);

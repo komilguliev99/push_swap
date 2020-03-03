@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:20:48 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/28 14:29:15 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/03/03 14:19:19 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 void			generate_second(t_stack **a, t_stack **b, t_main *st)
 {
-	int		max;
-
-	max = st->mid;
-	st->mid = (max - st->next) / 2 + st->next;
+	st->max = st->mid;
+	st->mid = (st->max - st->next) / 2 + st->next;
 	st->flag++;
 	if (st->b_cnt == 3)
 	{
@@ -36,7 +34,7 @@ void			generate_second(t_stack **a, t_stack **b, t_main *st)
 
 static void		sorting(t_stack **a, t_stack **b, t_main *st, int stop)
 {
-	st->mid = st->max / 2 + st->next;
+	st->mid = st->cnt / 2 + st->next;
 	move_down(a, b, st, (*a)->flag);
 	while (*b)
 		generate_second(a, b, st);
