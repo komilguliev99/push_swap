@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_cmdlist.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 12:21:05 by dcapers           #+#    #+#             */
-/*   Updated: 2020/03/04 12:23:00 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/03/04 13:41:18 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ int					fill_cmdlist(t_list **cmd)
 			ft_strcmp(command, "rb") == 0 || ft_strcmp(command, "rr") == 0 ||
 			ft_strcmp(command, "rra") == 0 || ft_strcmp(command, "rrb") == 0
 			|| ft_strcmp(command, "rrr") == 0))
-			error = 1;
+				error = 1;
 		ft_list_push(cmd, command);
 	}
 	if (error)
 	{
 		if (cmd)
 			ft_list_clear(cmd);
-		free(command);
 	}
 	return (!error);
 }

@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:50:21 by dcapers           #+#    #+#             */
-/*   Updated: 2020/02/28 15:13:01 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/03/04 13:39:10 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void			ft_list_clear(t_list **lst)
 	{
 		del = *lst;
 		*lst = (*lst)->next;
-		free(del->content);
+		if (del->content)
+			free(del->content);
 		free(del);
 	}
 }

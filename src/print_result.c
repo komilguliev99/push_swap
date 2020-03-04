@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_result.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 12:22:16 by dcapers           #+#    #+#             */
-/*   Updated: 2020/03/04 12:24:35 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/03/04 14:02:39 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ static int		check_for(char *s1, char *s2, char c)
 	return (0);
 }
 
+static int		check_print(char *s1, char *s2)
+{
+	if ((!ft_strcmp(s1, "pa") && !ft_strcmp(s2, "pb")) ||
+		(!ft_strcmp(s1, "pb") && !ft_strcmp(s2, "pa")) ||
+		(!ft_strcmp(s1, "ra") && !ft_strcmp(s2, "rra")) ||
+		(!ft_strcmp(s1, "rra") && !ft_strcmp(s2, "ra")) ||
+		(!ft_strcmp(s1, "rb") && !ft_strcmp(s2, "rrb")) ||
+		(!ft_strcmp(s1, "rrb") && !ft_strcmp(s2, "rb")))
+		return (1);
+	return (0);
+}
+
 void			print_pushswap(t_main *st, t_stack **a, t_list *list)
 {
 	while (list && list->next)
@@ -42,6 +54,8 @@ void			print_pushswap(t_main *st, t_stack **a, t_list *list)
 		if (check_for(list->content, list->next->content, 's'))
 			list = list->next;
 		else if (check_for(list->content, list->next->content, 'r'))
+			list = list->next;
+		else if (check_print(list->content, list->next->content))
 			list = list->next;
 		else
 		{
