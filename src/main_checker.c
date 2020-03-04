@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/27 12:25:06 by dcapers           #+#    #+#             */
-/*   Updated: 2020/03/03 13:53:03 by dcapers          ###   ########.fr       */
+/*   Created: 2020/03/04 12:21:56 by dcapers           #+#    #+#             */
+/*   Updated: 2020/03/04 12:25:12 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,12 @@ int					main(int ac, char **av)
 		if (a)
 			ft_stk_clear(&a);
 		write(2, "Error\n", 6);
-		exit (0);
+		exit(0);
 	}
 	if (flag)
 		print_stacks(a, b);
 	if (!a)
-		exit (0);
+		exit(0);
 	run(cmd, &a, &b, flag);
 	ft_list_clear(&cmd);
 	print_result(a, b);

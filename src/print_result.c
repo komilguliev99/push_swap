@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_result.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dcapers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/27 21:41:36 by dcapers           #+#    #+#             */
-/*   Updated: 2020/03/03 13:45:22 by dcapers          ###   ########.fr       */
+/*   Created: 2020/03/04 12:22:16 by dcapers           #+#    #+#             */
+/*   Updated: 2020/03/04 12:24:35 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void			print_result(t_stack *a, t_stack *b)
 		if (a->data > a->next->data)
 		{
 			write(1, "KO\n", 3);
-			exit (0);
+			exit(0);
 		}
 		a = a->next;
 	}
