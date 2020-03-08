@@ -6,7 +6,7 @@
 /*   By: dcapers <dcapers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:14:32 by dcapers           #+#    #+#             */
-/*   Updated: 2020/03/04 13:53:25 by dcapers          ###   ########.fr       */
+/*   Updated: 2020/03/08 15:08:33 by dcapers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static int			check_arg(char *arg, int *exist, int *len)
 				(*len)--;
 			while (*len >= 0 && ft_isspace(arg[*len]))
 				(*len)--;
-			if (arg[*len + 1] != '-' && arg[*len + 1] != '+'  && (*len < 0 || ft_isdigit(arg[*len])))
+			if (arg[*len + 1] != '-' && arg[*len + 1] != '+'
+					&& (*len < 0 || ft_isdigit(arg[*len])))
 				return (1);
 			else
 				return (0);
